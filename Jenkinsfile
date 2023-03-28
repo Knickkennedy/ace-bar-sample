@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Image Build') {
       steps {
         echo 'Building'    
         sh 'podman build -f Dockerfile --tag image-registry.openshift-image-registry.svc:5000/ace/aceapp:$GIT_COMMIT'
@@ -19,7 +19,7 @@ pipeline {
         sh 'podman push image-registry.openshift-image-registry.svc:5000/ace/aceapp:$GIT_COMMIT --tls-verify=false'
       }
     }
-    stage('Build') {
+    stage('Application Build') {
       steps {
         echo 'Building the application now...'
         sh 'oc apply -f service.yaml'

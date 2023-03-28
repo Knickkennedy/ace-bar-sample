@@ -17,7 +17,15 @@ pipeline {
       steps {
         echo 'Pushing'
         sh 'podman push image-registry.openshift-image-registry.svc:5000/ace/aceapp:$GIT_COMMIT --tls-verify=false'
-            }
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'Building the application now...'
+        sh 'oc apply -f service.yaml'
+        sh 'oc apply -f route.yaml'
+        sh './deployment.sh'
+      }
     }
   }
 }

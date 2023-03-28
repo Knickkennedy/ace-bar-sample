@@ -24,6 +24,7 @@ pipeline {
         echo 'Building the application now...'
         sh 'oc apply -f service.yaml'
         sh 'oc apply -f route.yaml'
+        sh 'chmod 755 deployment.sh'
         sh './deployment.sh'
       }
     }

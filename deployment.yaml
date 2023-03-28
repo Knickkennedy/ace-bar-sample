@@ -20,7 +20,7 @@ spec:
       containers:
         - name: aceapp
           image: >-
-            image-registry.openshift-image-registry.svc:5000/ace/aceapp:latest
+            image-registry.openshift-image-registry.svc:5000/ace/aceapp
           ports:
             - containerPort: 7600
               protocol: TCP
